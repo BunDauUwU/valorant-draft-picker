@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant Draft Pick</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>VALORANT DRAFT PICK</h1>
+
+    <div class="turn" id="turnText">
+        Current Turn: A1
+    </div>
+
+    <div class="layout">
+
+        <div class="team">
+            <div class="team-banner">
+
+                <img id="teamAImage"
+                    class="team-image"
+                    src="assets/teamA.jpg">
+
+                <input type="file"
+                    id="uploadA"
+                    accept="image/*"
+                    hidden>
+
+            </div>
+
+            <h2>TEAM A</h2>
+
+            <div class="slot" id="A1"></div>
+            <div class="slot" id="A2"></div>
+            <div class="slot" id="A3"></div>
+            <div class="slot" id="A4"></div>
+            <div class="slot" id="A5"></div>
+        </div>
+
+        <div class="center">
+
+            <div class="roles">
+
+                <button class="role-btn active"
+                        data-role="Any">
+                    ANY
+                </button>
+
+                <button class="role-btn"
+                        data-role="Duelist">
+                    DUELIST
+                </button>
+
+                <button class="role-btn"
+                        data-role="Controller">
+                    CONTROLLER
+                </button>
+
+                <button class="role-btn"
+                        data-role="Initiator">
+                    INITIATOR
+                </button>
+
+                <button class="role-btn"
+                        data-role="Sentinel">
+                    SENTINEL
+                </button>
+
+            </div>
+
+            <button id="spinBtn">
+                RANDOM AGENT
+            </button>
+
+            <div class="preview">
+
+                <img id="previewImage">
+
+                <h2 id="previewName">?</h2>
+
+                <p id="previewRole"></p>
+
+            </div>
+
+            <div id="agentPool"
+                 class="agent-pool">
+            </div>
+
+        </div>
+
+        <div class="team">
+            <div class="team-banner">
+
+                <img id="teamAImage"
+                    class="team-image"
+                    src="assets/teamb.jpg">
+
+                <input type="file"
+                    id="uploadA"
+                    accept="image/*"
+                    hidden>
+
+            </div>
+
+            <h2>TEAM B</h2>
+
+            <div class="slot" id="B1"></div>
+            <div class="slot" id="B2"></div>
+            <div class="slot" id="B3"></div>
+            <div class="slot" id="B4"></div>
+            <div class="slot" id="B5"></div>
+        </div>
+
+    </div>
+
+<audio id="spinSound"
+       src="sounds/TickingAway.mp3">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+[
+  {"name":"Astra","role":"Controller","image":"assets/600px-Astra_icon.png"},
+  {"name":"Brimstone","role":"Controller","image":"assets/Brimstone_icon.png"},
+  {"name":"Omen","role":"Controller","image":"assets/Omen_icon.png"},
+  {"name":"Viper","role":"Controller","image":"assets/Viper_icon.png"},
+  {"name":"Miks","role":"Controller","image":"assets/Miks_icon.png"},
+  {"name":"Clove","role":"Controller","image":"assets/Clove_icon.png"},
+  {"name":"Harbor","role":"Controller","image":"assets/Harbor_icon.png"},
+
+  {"name":"Jett","role":"Duelist","image":"assets/Jett_icon.png"},
+  {"name":"Phoenix","role":"Duelist","image":"assets/Phoenix_icon.png"},
+  {"name":"Neon","role":"Duelist","image":"assets/Neon_icon.png"},
+  {"name":"Yoru","role":"Duelist","image":"assets/Yoru_icon.png"},
+  {"name":"Raze","role":"Duelist","image":"assets/Raze_icon.png"},
+  {"name":"Reyna","role":"Duelist","image":"assets/Reyna_icon.png"},
+  {"name":"Iso","role":"Duelist","image":"assets/Iso_icon.png"},
+  {"name":"Waylay","role":"Duelist","image":"assets/Waylay_icon.png"},
+
+  {"name":"Breach","role":"Initiator","image":"assets/120px-Breach_icon.png"},
+  {"name":"Fade","role":"Initiator","image":"assets/Fade_icon.png"},
+  {"name":"Gekko","role":"Initiator","image":"assets/Gekko_icon.png"},
+  {"name":"KAY/O","role":"Initiator","image":"assets/KAYO_icon.png"},
+  {"name":"Skye","role":"Initiator","image":"assets/Skye_icon.png"},
+  {"name":"Sova","role":"Initiator","image":"assets/Sova_icon.png"},
+  {"name":"Tejo","role":"Initiator","image":"assets/Tejo_icon.png"},
+
+  {"name":"Chamber","role":"Sentinel","image":"assets/Chamber_icon.png"},
+  {"name":"Cypher","role":"Sentinel","image":"assets/Cypher_icon.png"},
+  {"name":"Deadlock","role":"Sentinel","image":"assets/Deadlock_icon.png"},
+  {"name":"Killjoy","role":"Sentinel","image":"assets/Killjoy_icon.png"},
+  {"name":"Sage","role":"Sentinel","image":"assets/Sage_icon.png"},
+  {"name":"Vyse","role":"Sentinel","image":"assets/Vyse_icon.png"},
+  {"name":"Veto","role":"Sentinel","image":"assets/Veto_icon.png"}
+]
