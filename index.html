@@ -5,116 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valorant Draft Pick</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
 
 <div class="container">
+        <div id="mapSidebar" class="map-sidebar">
 
-    <h1>VALORANT DRAFT PICK</h1>
+            <div class="map-thumb">
 
-    <div class="turn" id="turnText">
-        Current Turn: A1
+                <img id="selectedMapThumb">
+
+                <div class="map-overlay">
+                    CURRENT MAP
+                </div>
+
+            </div>
+
+            <h3 id="selectedMapName">
+                NONE
+            </h3>
+
+        </div>
+    <div id="mapSection" class="visible">
+        <div class="map-section">
+
+                <div class="map-header">
+
+                    <h2>MAP PICK</h2>
+
+                    <button id="mapBtn">
+                        🎲 RANDOM MAP
+                    </button>
+
+                </div>
+
+                <div class="map-carousel">
+
+                    <div class="side-map">
+                        <img id="prevMap">
+                    </div>
+
+                    <div class="center-map">
+
+                        <div class="map-selected">
+                            SELECTED MAP
+                        </div>
+
+                        <img id="currentMap">
+
+                    </div>
+
+                    <div class="side-map">
+                        <img id="nextMap">
+                    </div>
+
+                </div>
+
+                <h2 id="mapName"></h2>
+
+        </div>
     </div>
 
-    <div class="layout">
+    
+    <div id="agentSection" class="hidden">
+        <h1>VALORANT DRAFT PICK</h1>
 
-        <div class="team">
-            <div class="team-banner">
-
-                <img id="teamAImage"
-                    class="team-image"
-                    src="assets/teamA.jpg">
-
-                <input type="file"
-                    id="uploadA"
-                    accept="image/*"
-                    hidden>
-
-            </div>
-
-            <h2>TEAM A</h2>
-
-            <div class="slot" id="A1"></div>
-            <div class="slot" id="A2"></div>
-            <div class="slot" id="A3"></div>
-            <div class="slot" id="A4"></div>
-            <div class="slot" id="A5"></div>
+        <div class="turn" id="turnText">
+            Current Turn: A1
         </div>
 
-        <div class="center">
+        <div class="layout">
 
-            <div class="roles">
+            <div class="team">
+                <div class="team-banner">
 
-                <button class="role-btn active"
-                        data-role="Any">
-                    ANY
+                    <img id="teamAImage"
+                        class="team-image"
+                        src="assets/teamB.jpg">
+
+                    <input type="file"
+                        id="uploadA"
+                        accept="image/*"
+                        hidden>
+
+                </div>
+
+                <div class="prx-logo">
+                    <h2 class="prx">PRX CON</h2>
+                </div>
+
+                <div class="slot" id="A1"></div>
+                <div class="slot" id="A2"></div>
+                <div class="slot" id="A3"></div>
+                <div class="slot" id="A4"></div>
+                <div class="slot" id="A5"></div>
+            </div>
+
+            <div class="center">
+
+                <div class="roles">
+
+                    <button class="role-btn active"
+                            data-role="Any">
+                        ANY
+                    </button>
+
+                    <button class="role-btn"
+                            data-role="Duelist">
+                        DUELIST
+                    </button>
+
+                    <button class="role-btn"
+                            data-role="Controller">
+                        CONTROLLER
+                    </button>
+
+                    <button class="role-btn"
+                            data-role="Initiator">
+                        INITIATOR
+                    </button>
+
+                    <button class="role-btn"
+                            data-role="Sentinel">
+                        SENTINEL
+                    </button>
+
+                </div>
+
+                <button id="spinBtn">
+                    RANDOM AGENT
                 </button>
 
-                <button class="role-btn"
-                        data-role="Duelist">
-                    DUELIST
-                </button>
+                <div class="preview">
 
-                <button class="role-btn"
-                        data-role="Controller">
-                    CONTROLLER
-                </button>
+                    <img id="previewImage">
 
-                <button class="role-btn"
-                        data-role="Initiator">
-                    INITIATOR
-                </button>
+                    <h2 id="previewName">?</h2>
 
-                <button class="role-btn"
-                        data-role="Sentinel">
-                    SENTINEL
-                </button>
+                    <p id="previewRole"></p>
+
+                </div>
+
+                <div id="agentPool"
+                    class="agent-pool">
+                </div>
 
             </div>
 
-            <button id="spinBtn">
-                RANDOM AGENT
-            </button>
+            <div class="team">
+                <div class="team-banner">
 
-            <div class="preview">
+                    <img id="teamBImage"
+                        class="team-image"
+                        src="assets/teamA.jpg">
 
-                <img id="previewImage">
+                    <input type="file"
+                        id="uploadB"
+                        accept="image/*"
+                        hidden>
 
-                <h2 id="previewName">?</h2>
+                </div>
 
-                <p id="previewRole"></p>
+                <div class="logo">
+                    <h2 class="bun">BUNCHA</h2>
+                    <h2 class="ngon">NGON</h2>
+                </div>
 
-            </div>
-
-            <div id="agentPool"
-                 class="agent-pool">
+                <div class="slot" id="B1"></div>
+                <div class="slot" id="B2"></div>
+                <div class="slot" id="B3"></div>
+                <div class="slot" id="B4"></div>
+                <div class="slot" id="B5"></div>
             </div>
 
         </div>
-
-        <div class="team">
-            <div class="team-banner">
-
-                <img id="teamAImage"
-                    class="team-image"
-                    src="assets/teamb.jpg">
-
-                <input type="file"
-                    id="uploadA"
-                    accept="image/*"
-                    hidden>
-
-            </div>
-
-            <h2>TEAM B</h2>
-
-            <div class="slot" id="B1"></div>
-            <div class="slot" id="B2"></div>
-            <div class="slot" id="B3"></div>
-            <div class="slot" id="B4"></div>
-            <div class="slot" id="B5"></div>
-        </div>
-
     </div>
 
 <audio id="spinSound"

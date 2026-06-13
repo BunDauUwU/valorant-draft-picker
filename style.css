@@ -40,6 +40,7 @@ h1{
 .team h2{
     text-align:center;
     margin-bottom:10px;
+    line-height:0.7;
 }
 
 .slot{
@@ -280,4 +281,353 @@ h1{
     to{
         transform:translateX(110px);
     }
+}
+
+/* ========================= */
+/* MAP SECTION */
+/* ========================= */
+
+.map-section{
+
+    margin-top:40px;
+
+    padding-top:30px;
+
+    border-top:
+        1px solid #2a3142;
+}
+
+.map-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.map-header h2{
+
+    color:#ff4655;
+}
+
+/* BUTTON */
+
+#mapBtn{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:12px 22px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4655,
+            #ff6b77
+        );
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+#mapBtn:hover:not(:disabled){
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 20px
+        rgba(255,70,85,.5);
+}
+
+#mapBtn:disabled{
+
+    background:#777;
+
+    cursor:not-allowed;
+
+    filter:grayscale(100%);
+}
+
+#mapBtn:disabled::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            rgba(255,255,255,.25) 0px,
+            rgba(255,255,255,.25) 12px,
+            transparent 12px,
+            transparent 24px
+        );
+
+    animation:
+        stripes 1s linear infinite;
+}
+
+@keyframes stripes{
+
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:60px 0;
+    }
+}
+
+/* CAROUSEL */
+
+.map-carousel{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+    margin-top: 17%;
+}
+
+.side-map img{
+
+    width:240px;
+    height:160px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    opacity:.35;
+
+    filter:
+        blur(2px)
+        grayscale(60%);
+}
+
+.center-map{
+
+    position:relative;
+}
+
+.center-map img{
+
+    width:680px;
+    height:360px;
+
+    object-fit:cover;
+
+    border-radius:14px;
+
+    border:3px solid #ff4655;
+
+    box-shadow:
+        0 0 25px
+        rgba(255,70,85,.4);
+}
+
+.map-selected{
+
+    position:absolute;
+
+    top:10px;
+    left:10px;
+
+    z-index:10;
+
+    padding:6px 10px;
+
+    border-radius:8px;
+
+    background:#ff4655;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+#mapName{
+
+    text-align:center;
+
+    margin-top:15px;
+
+    font-size:28px;
+
+    color:white;
+}
+
+/* Map slinde */
+
+.map-sidebar{
+    left: -0px;
+    position:fixed;
+    width:260px;
+    top: 200px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:15px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateX(-30px);
+
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+
+    transform-origin:center center;
+}
+
+.map-sidebar.show{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateX(0);
+}
+
+.map-thumb{
+
+    position:relative;
+
+    width:240px;
+    height:500px;
+
+    overflow:hidden;
+
+    clip-path:polygon(
+        18% 0%,
+        100% 0%,
+        82% 100%,
+        0% 100%
+    );
+
+    border:2px solid #ff4655;
+}
+.map-thumb img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+.map-overlay{
+
+    position:absolute;
+
+    bottom:0;
+    left:-30px;
+    right:0;
+
+    padding:8px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.8)
+        );
+
+    font-size:12px;
+    font-weight:700;
+}
+
+#selectedMapName{
+    margin-left: -30px;
+    color:#ff4655;
+
+    font-size:24px;
+    font-weight:800;
+
+    text-transform:uppercase;
+}
+
+.map-sidebar.show{
+
+    visibility:visible;
+
+    animation:
+        revealMap .85s
+        cubic-bezier(
+            .34,
+            1.56,
+            .64,
+            1
+        )
+        forwards;
+}
+
+@keyframes revealMap{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            scaleY(0)
+            scaleX(1);
+    }
+
+    60%{
+
+        opacity:1;
+
+        transform:
+            scaleY(1)
+            scaleX(1);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:
+            scale(1);
+    }
+}
+
+
+.hidden{
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    pointer-events:none;
+
+    transition:.4s;
+}
+
+.visible{
+
+    opacity:1;
+
+    transform:none;
+
+    transition:.4s;
 }

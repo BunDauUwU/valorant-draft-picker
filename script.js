@@ -277,163 +277,228 @@ setupTeamUpload(
     "teamBImage"
 );
 
-// function spinAgent(){
+/* map pool */
+
+const maps = [
+
+    {
+        name:"Ascent",
+        image:"assets/ascent.avif"
+    },
+
+    {
+        name:"Bind",
+        image:"assets/bind.avif"
+    },
+
+    {
+        name:"Haven",
+        image:"assets/haven.avif"
+    },
+
+    {
+        name:"Split",
+        image:"assets/split.avif"
+    },
+
+    {
+        name:"Lotus",
+        image:"assets/lotus.avif"
+    },
+
+    {
+        name:"Sunset",
+        image:"assets/sunset.avif"
+    },
+
+    {
+        name:"Pearl",
+        image:"assets/pearl.avif"
+    },
+
+    {
+        name:"Icebox",
+        image:"assets/icebox.avif"
+    },
+
+    {
+        name:"Abyss",
+        image:"assets/abyss.avif"
+    }
+];
+
+function updateMapPreview(index){
+
+    const current =
+        maps[index];
+
+    const prev =
+        maps[
+            (index - 1 + maps.length)
+            % maps.length
+        ];
+
+    const next =
+        maps[
+            (index + 1)
+            % maps.length
+        ];
+
+    document.getElementById(
+        "prevMap"
+    ).src = prev.image;
+
+    document.getElementById(
+        "currentMap"
+    ).src = current.image;
+
+    document.getElementById(
+        "nextMap"
+    ).src = next.image;
+
+    document.getElementById(
+        "mapName"
+    ).textContent =
+        current.name;
+}
+
+
+async function spinMap(){
+    spinSound.play();
+    const btn =
+        document.getElementById(
+            "mapBtn"
+        );
+
+    if(btn.disabled) return;
+
+    btn.disabled = true;
+
+    btn.textContent =
+        "RANDOMING...";
+
+    let index = 0;
+
+    let delay = 40;
+
+    const loops = 9;
+
+    const stopAt =
+        Math.floor(
+            Math.random() *
+            maps.length
+        );
+
+    const totalSteps =
+        loops * maps.length +
+        stopAt;
+
+    for(
+        let i = 0;
+        i <= totalSteps;
+        i++
+    ){
+
+        updateMapPreview(
+            index % maps.length
+        );
+
+        await new Promise(
+            resolve =>
+            setTimeout(
+                resolve,
+                delay
+            )
+        );
+
+        index++;
+
+        if(i > totalSteps * 0.5){
+
+            delay *= 1.08;
+        }
+    }
+
+    btn.textContent =
+        "MAP SELECTED";
+
+    const selectedMap =
+    maps[
+        (index - 1) % maps.length
+    ];
+
+    document
+        .getElementById(
+            "selectedMapThumb"
+        ).src =
+        selectedMap.image;
+
+    document
+        .getElementById(
+            "selectedMapName"
+        ).textContent =
+        selectedMap.name;
+
+    document
+        .getElementById(
+            "mapSidebar"
+        ).classList.add(
+            "show"
+    );
+    btn.disabled = 0;
+
+    ////
+
+    const mapSection =
+        document.getElementById(
+            "mapSection"
+        );
+
+    const agentSection =
+        document.getElementById(
+            "agentSection"
+        );
+
+    mapSection.classList.remove(
+        "visible"
+    );
+
+    mapSection.classList.add(
+        "hidden"
+    );
+
+    setTimeout(() => {
+
+        mapSection.style.display =
+            "none";
+
+        agentSection.style.display =
+            "block";
+
+        requestAnimationFrame(() => {
+
+            agentSection.classList.remove(
+                "hidden"
+            );
+
+            agentSection.classList.add(
+                "visible"
+            );
+
+        });
+
+    }, 400);
     
-//     if(turnIndex >= order.length){
+}
 
-//         alert("Draft Complete");
-//         return;
-//     }
+updateMapPreview(0);
 
-//     let candidates;
+document
+    .getElementById("mapBtn")
+    .addEventListener(
+        "click",
+        spinMap
+    );
 
-//     if(selectedRole === "Any"){
 
-//         candidates = availableAgents;
 
-//     }else{
-
-//         candidates =
-//             availableAgents.filter(
-//                 a => a.role === selectedRole
-//             );
-//     }
-
-//     if(candidates.length === 0){
-
-//         alert("No agents left");
-//         return;
-//     }
-
-//     let currentCard = null;
-
-//     let currentDelay = 100;  
-//     const maxDelay = 600;
-//     const decelerationRate = 1.2;
-
-//     const interval =
-//     setInterval(() => {
-
-//         if(currentCard){
-
-//             currentCard.classList.remove(
-//                 "active"
-//             );
-//         }
-
-//         const random =
-//             candidates[
-//                 Math.floor(
-//                     Math.random()
-//                     * candidates.length
-//                 )
-//             ];
-
-//         currentCard =
-//             document.getElementById(
-//                 "card-" + random.name
-//             );
-
-//         currentCard.classList.add(
-//             "active"
-//         );
-
-//         document
-//             .getElementById(
-//                 "previewImage"
-//             ).src = random.image;
-
-//         document
-//             .getElementById(
-//                 "previewName"
-//             ).textContent =
-//             random.name;
-
-//         document
-//             .getElementById(
-//                 "previewRole"
-//             ).textContent =
-//             random.role;
-        
-//     },currentDelay);
-
-//     setTimeout(() => {
-
-//         clearInterval(interval);
-
-//         const picked =
-//             candidates[
-//                 Math.floor(
-//                     Math.random()
-//                     * candidates.length
-//                 )
-//             ];
-
-//         document
-//             .querySelectorAll(
-//                 ".agent-card"
-//             )
-//             .forEach(card =>
-//                 card.classList.remove(
-//                     "active"
-//                 )
-//             );
-
-//         const winner =
-//             document.getElementById(
-//                 "card-" + picked.name
-//             );
-
-//         winner.classList.add(
-//             "winner"
-//         );
-
-//         winner.classList.add(
-//             "used"
-//         );
-
-//         document
-//             .getElementById(
-//                 "previewImage"
-//             ).src = picked.image;
-
-//         document
-//             .getElementById(
-//                 "previewName"
-//             ).textContent =
-//             picked.name;
-
-//         document
-//             .getElementById(
-//                 "previewRole"
-//             ).textContent =
-//             picked.role;
-
-//         const slot =
-//             document.getElementById(
-//                 order[turnIndex]
-//             );
-
-//         slot.innerHTML = `
-//             <img src="${picked.image}">
-//             <span>${picked.name}</span>
-//         `;
-
-//         availableAgents =
-//             availableAgents.filter(
-//                 a => a.name !== picked.name
-//             );
-
-//         turnIndex++;
-
-//         document
-//             .getElementById(
-//                 "turnText"
-//             ).textContent =
-//             turnIndex < order.length
-//             ? "Current Turn: " +
-//               order[turnIndex]
-//             : "Draft Complete";
-
-//     },5000);
-// }
