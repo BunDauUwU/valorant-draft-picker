@@ -280,6 +280,10 @@ setupTeamUpload(
 /* map pool */
 
 const maps = [
+    {
+        name:"Abyss",
+        image:"assets/abyss.avif"
+    },
 
     {
         name:"Ascent",
@@ -289,6 +293,21 @@ const maps = [
     {
         name:"Bind",
         image:"assets/bind.avif"
+    },
+
+    {
+        name:"Breeze",
+        image:"assets/breeze.avif"
+    },
+
+    {
+        name:"Corrode",
+        image:"assets/corrode.avif"
+    },
+
+    {
+        name:"Icebox",
+        image:"assets/icebox.avif"
     },
 
     {
@@ -317,31 +336,85 @@ const maps = [
     },
 
     {
-        name:"Icebox",
-        image:"assets/icebox.avif"
-    },
-
-    {
-        name:"Abyss",
-        image:"assets/abyss.avif"
+        name:"Fracture",
+        image:"assets/fracture.avif"
     }
 ];
 
+const excludedMaps = new Set();
+
+function toggleMap(mapName) {
+
+    if (excludedMaps.has(mapName)) {
+        excludedMaps.delete(mapName);
+    } else {
+        excludedMaps.add(mapName);
+    }
+
+    renderMapPool();
+}
+
+function renderMapPool() {
+
+    const pool =
+        document.getElementById("mapPool");
+
+    pool.innerHTML = "";
+
+    maps.forEach(map => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "map-card";
+
+        if (excludedMaps.has(map.name)) {
+            card.classList.add("excluded");
+        }
+
+        card.innerHTML = `
+            <img src="${map.image}">
+            <div class="map-title">
+                ${map.name}
+            </div>
+        `;
+
+        card.onclick = () =>
+            toggleMap(map.name);
+
+        pool.appendChild(card);
+    });
+}
+
+function getAvailableMaps() {
+
+    return maps.filter(
+        map => !excludedMaps.has(map.name)
+    );
+
+}
+
+renderMapPool();
+
+/// map rand
+
 function updateMapPreview(index){
+    const availableMaps =
+        getAvailableMaps();
 
     const current =
-        maps[index];
+        availableMaps[index];
 
     const prev =
-        maps[
-            (index - 1 + maps.length)
-            % maps.length
+        availableMaps[
+            (index - 1 + availableMaps.length)
+            % availableMaps.length
         ];
 
     const next =
-        maps[
+        availableMaps[
             (index + 1)
-            % maps.length
+            % availableMaps.length
         ];
 
     document.getElementById(
@@ -364,6 +437,18 @@ function updateMapPreview(index){
 
 
 async function spinMap(){
+    const availableMaps =
+        getAvailableMaps();
+
+    if (availableMaps.length === 0) {
+
+        alert(
+            "At least 1 map is required."
+        );
+
+        return;
+    }
+
     spinSound.play();
     const btn =
         document.getElementById(
@@ -379,18 +464,18 @@ async function spinMap(){
 
     let index = 0;
 
-    let delay = 40;
+    let delay = 80;
 
-    const loops = 9;
+    const loops = 8;
 
     const stopAt =
         Math.floor(
             Math.random() *
-            maps.length
+            availableMaps.length
         );
 
     const totalSteps =
-        loops * maps.length +
+        loops * availableMaps.length +
         stopAt;
 
     for(
@@ -400,7 +485,7 @@ async function spinMap(){
     ){
 
         updateMapPreview(
-            index % maps.length
+            index % availableMaps.length
         );
 
         await new Promise(
@@ -414,7 +499,7 @@ async function spinMap(){
         index++;
 
         if(i > totalSteps * 0.5){
-
+            if(delay > 1200) continue;
             delay *= 1.08;
         }
     }
@@ -423,8 +508,8 @@ async function spinMap(){
         "MAP SELECTED";
 
     const selectedMap =
-    maps[
-        (index - 1) % maps.length
+    availableMaps[
+        (index - 1) % availableMaps.length
     ];
 
     document
@@ -499,6 +584,4 @@ document
         "click",
         spinMap
     );
-
-
 
